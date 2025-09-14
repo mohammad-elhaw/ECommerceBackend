@@ -13,8 +13,8 @@ builder.Services.AddCatalogModule(builder.Configuration)
 var app = builder.Build();
 
 // Configure Http request pipeline.
-app.UseCatalogModule()
-    .UseBasketModule()
+await app.UseCatalogModule();
+    app.UseBasketModule()
     .UseOrderModule();
 
 app.Run();

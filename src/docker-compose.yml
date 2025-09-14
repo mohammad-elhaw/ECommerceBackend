@@ -1,0 +1,6 @@
+services:
+  ecommercedb:
+    image: postgres
+
+volumes:
+  postgres_ecommercedb:
