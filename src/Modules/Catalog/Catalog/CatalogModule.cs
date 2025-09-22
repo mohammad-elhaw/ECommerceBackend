@@ -1,14 +1,10 @@
-﻿using Catalog.Data;
-using Catalog.Data.Seed;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using Catalog.Data.Seed;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
 using Shared.Data.Interceptors;
 using Shared.Data.seed;
-using System.Reflection;
 
 namespace Catalog;
 
@@ -21,10 +17,7 @@ public static class CatalogModule
         // Api Endpoint service
 
         // Application use case services
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-        });
+        
 
         // Infrastructure services
 

@@ -1,3 +1,12 @@
 ﻿global using Shared.DDD;
 global using Catalog.Products.Models;
 global using Catalog.Products.Events;
+global using Catalog.Data;
+global using Shared.CQRS;
+global using Catalog.Products.Dtos;
+global using Microsoft.EntityFrameworkCore;
+global using Carter;
+global using MediatR;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Routing;

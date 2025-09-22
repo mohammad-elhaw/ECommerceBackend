@@ -7,6 +7,7 @@ public class Product : Aggregate<Guid>
     public string ImageFile { get; private set; } = null!;
     public decimal Price { get; private set; }
 
+    private Product() { }
 
     public static Product Create(Guid id, string name, List<string> categories, string description, string imageFile, decimal price)
     {
