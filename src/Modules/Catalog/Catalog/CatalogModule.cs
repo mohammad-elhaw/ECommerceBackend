@@ -1,10 +1,12 @@
 ﻿using Catalog.Data.Seed;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
 using Shared.Data.Interceptors;
 using Shared.Data.seed;
+using System.Reflection;
 
 namespace Catalog;
 
@@ -18,6 +20,7 @@ public static class CatalogModule
 
         // Application use case services
         
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         // Infrastructure services
 

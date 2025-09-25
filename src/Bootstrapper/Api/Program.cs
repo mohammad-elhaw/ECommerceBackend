@@ -1,9 +1,3 @@
-using Basket;
-using Carter;
-using Catalog;
-using Order;
-using Shared.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,9 +9,13 @@ builder.Services.AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
     .AddOrderModule(builder.Configuration);
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure Http request pipeline.
+
+app.UseExceptionHandler(options => { });
 
 app.MapCarter();
 

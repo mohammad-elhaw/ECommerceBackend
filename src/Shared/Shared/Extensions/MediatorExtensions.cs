@@ -10,8 +10,12 @@ public static class MediatorExtensions
             var assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(assembly => !assembly.IsDynamic && !string.IsNullOrWhiteSpace(assembly.Location))
                 .ToArray();
+
             config.RegisterServicesFromAssemblies(assemblies);
+            config.AddOpenBehavior(typeof(Behaviors.ValidationBehavior<,>));
+            config.AddOpenBehavior(typeof(Behaviors.LoggingBahavior<,>));
         });
+
         return services;
     }
 }
