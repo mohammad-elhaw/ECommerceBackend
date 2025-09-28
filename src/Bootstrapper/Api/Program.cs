@@ -2,6 +2,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Host.UseSerilog((context, config) =>
+    config.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddCarterWithAssemblies();
 builder.Services.AddMediatorAssemblies();
 
@@ -15,9 +17,9 @@ var app = builder.Build();
 
 // Configure Http request pipeline.
 
-app.UseExceptionHandler(options => { });
-
 app.MapCarter();
+app.UseExceptionHandler(options => { });
+app.UseSerilogRequestLogging();
 
 await app.UseCatalogModule();
     app.UseBasketModule()

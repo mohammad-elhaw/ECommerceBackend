@@ -10,3 +10,16 @@ services:
       - "5432:5432"
     volumes:
       - postgres_ecommercedb:/var/lib/postgresql/data
+
+  seq:
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORD=Password123
+    restart: always
+    ports:
+      - "5341:5341"
+      - "9092:80"
+    volumes:
+      - seq_data:/data
+  
