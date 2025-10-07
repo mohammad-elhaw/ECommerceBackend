@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Shared.Extensions;
 public static class MediatorExtensions
@@ -16,6 +17,8 @@ public static class MediatorExtensions
             config.AddOpenBehavior(typeof(Behaviors.LoggingBahavior<,>));
         });
 
+        services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        
         return services;
     }
 }

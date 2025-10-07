@@ -22,7 +22,7 @@ app.UseExceptionHandler(options => { });
 app.UseSerilogRequestLogging();
 
 await app.UseCatalogModule();
-    app.UseBasketModule()
-    .UseOrderModule();
+await app.UseBasketModule();
+app.UseOrderModule();
 
-app.Run();
+await app.RunAsync();
