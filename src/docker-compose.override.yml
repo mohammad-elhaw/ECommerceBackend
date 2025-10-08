@@ -11,6 +11,12 @@ services:
     volumes:
       - postgres_ecommercedb:/var/lib/postgresql/data
 
+  distributedCache:
+    container_name: distributedCache
+    restart: always
+    ports:
+      - "6379:6379"
+
   seq:
     container_name: seq
     environment:

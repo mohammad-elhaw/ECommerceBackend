@@ -5,6 +5,5 @@ public interface IBasketRepository
         CancellationToken cancellationToken = default);
     Task<ShoppingCart> CreateBasket(ShoppingCart shoppingCart, CancellationToken cancellationToken = default);
     Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default);
-    Task<bool> UpdateBasket(ShoppingCart shoppingCart, CancellationToken cancellationToken = default);
-    Task<int> SaveChanges(CancellationToken cancellationToken = default);
+    Task<int> SaveChanges(string? userName = null, CancellationToken cancellationToken = default);
 }

@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Basket.Basket.Models;
 public class ShoppingCartItem : Entity<Guid>
 {
     public Guid ShoppingCartId { get; private set; }
@@ -20,5 +22,12 @@ public class ShoppingCartItem : Entity<Guid>
         Color = color;
         Price = price;
         ProductName = productName;
+    }
+
+    [JsonConstructor]
+    internal ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, string color,
+        decimal price, string productName) : this(shoppingCartId, productId, quantity, color, price, productName)
+    {
+        Id = id;
     }
 }

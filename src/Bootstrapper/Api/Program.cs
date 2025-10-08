@@ -11,6 +11,11 @@ builder.Services.AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
     .AddOrderModule(builder.Configuration);
 
+builder.Services.AddStackExchangeRedisCache(opts =>
+{
+    opts.Configuration = builder.Configuration.GetConnectionString("redis");
+});
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();

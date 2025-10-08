@@ -2,6 +2,9 @@ services:
   ecommercedb:
     image: postgres
 
+  distributedCache:
+    image: redis
+
   seq:
     image: datalust/seq:latest
 

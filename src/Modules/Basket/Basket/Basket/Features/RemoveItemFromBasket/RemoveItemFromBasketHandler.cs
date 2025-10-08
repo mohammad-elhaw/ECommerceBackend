@@ -31,7 +31,7 @@ public class RemoveItemFromBasketHandler(IBasketRepository repository)
             ?? throw new BasketItemNotFoundException(command.ProductId);
 
         shoppingCart.RemoveItem(shoppingCartItem.ProductId);
-        await repository.SaveChanges(cancellationToken);
+        await repository.SaveChanges(command.UserName, cancellationToken);
 
         return new RemoveItemFromBasketResult(shoppingCart.Id);
     }

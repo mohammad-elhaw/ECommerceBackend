@@ -18,13 +18,6 @@ public class BasketRepository(BasketDbContext context)
         return true;
     }
 
-    public async Task<bool> UpdateBasket(ShoppingCart shoppingCart, CancellationToken cancellationToken = default)
-    {
-        context.ShoppingCarts.Update(shoppingCart);
-        await context.SaveChangesAsync(cancellationToken);
-        return true;
-    }
-
     public async Task<ShoppingCart> GetBasket(string userName, bool asNoTracking = true, CancellationToken cancellationToken = default)
         =>  (asNoTracking
             ? await context.ShoppingCarts
@@ -36,7 +29,7 @@ public class BasketRepository(BasketDbContext context)
             .SingleOrDefaultAsync(sc => sc.UserName == userName, cancellationToken)) 
             ?? throw new BasketNotFoundException(userName);
 
-    public Task<int> SaveChanges(CancellationToken cancellationToken = default) =>
+    public Task<int> SaveChanges(string? userName = null, CancellationToken cancellationToken = default) =>
         context.SaveChangesAsync(cancellationToken);
 
     
