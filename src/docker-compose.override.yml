@@ -28,4 +28,14 @@ services:
       - "9092:80"
     volumes:
       - seq_data:/data
+
+  messagebus:
+    container_name: messagebus
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   

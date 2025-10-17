@@ -42,7 +42,6 @@ public class Product : Aggregate<Guid>
         Categories = categories;
         Description = description;
         ImageFile = imageFile;
-        Price = price;
         LastModified = DateTime.UtcNow;
 
         if(price != Price)

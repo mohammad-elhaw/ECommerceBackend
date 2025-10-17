@@ -1,23 +1,25 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Shared.Extensions;
 public static class MediatorExtensions
 {
-    public static IServiceCollection AddMediatorAssemblies(this IServiceCollection services)
+    public static IServiceCollection AddMediatorAssemblies(this IServiceCollection services,
+        params Assembly[] assemblies)
     {
         services.AddMediatR(config =>
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            var requiredAssemblies = assemblies
                 .Where(assembly => !assembly.IsDynamic && !string.IsNullOrWhiteSpace(assembly.Location))
                 .ToArray();
 
-            config.RegisterServicesFromAssemblies(assemblies);
+            config.RegisterServicesFromAssemblies(requiredAssemblies);
             config.AddOpenBehavior(typeof(Behaviors.ValidationBehavior<,>));
             config.AddOpenBehavior(typeof(Behaviors.LoggingBahavior<,>));
         });
 
-        services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddValidatorsFromAssemblies(assemblies);
         
         return services;
     }

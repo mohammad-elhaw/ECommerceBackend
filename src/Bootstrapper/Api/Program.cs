@@ -4,8 +4,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config) =>
     config.ReadFrom.Configuration(context.Configuration));
-builder.Services.AddCarterWithAssemblies();
-builder.Services.AddMediatorAssemblies();
+
+var catalogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
+
+builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly);
+builder.Services.AddMediatorAssemblies(catalogAssembly, basketAssembly);
+builder.Services.AddMassTransitWithAssemblies(
+    builder.Configuration, catalogAssembly, basketAssembly);
 
 builder.Services.AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
