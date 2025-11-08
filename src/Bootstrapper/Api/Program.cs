@@ -1,3 +1,5 @@
+using Keycloak.AuthServices.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +14,8 @@ builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly);
 builder.Services.AddMediatorAssemblies(catalogAssembly, basketAssembly);
 builder.Services.AddMassTransitWithAssemblies(
     builder.Configuration, catalogAssembly, basketAssembly);
+builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
+builder.Services.AddAuthorization();
 
 builder.Services.AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
@@ -31,6 +35,8 @@ var app = builder.Build();
 app.MapCarter();
 app.UseExceptionHandler(options => { });
 app.UseSerilogRequestLogging();
+app.UseAuthentication();
+app.UseAuthorization();
 
 await app.UseCatalogModule();
 await app.UseBasketModule();
