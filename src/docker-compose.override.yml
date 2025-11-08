@@ -7,7 +7,7 @@ services:
       - POSTGRES_DB=ecommercedb
     restart: always
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_ecommercedb:/var/lib/postgresql/data
 
@@ -39,3 +39,20 @@ services:
       - "5672:5672"
       - "15672:15672"
   
+  identity:
+    container_name: identity
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://ecommercedb:5432/ecommercedb
+      - KC_DB_SCHEMA=identity
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=admin
+    restart: always
+    depends_on:
+      - ecommercedb
+    ports:
+      - "9090:8080"
+    command:
+      - start-dev

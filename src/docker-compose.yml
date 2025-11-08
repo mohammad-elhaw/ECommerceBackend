@@ -11,6 +11,9 @@ services:
   messagebus:
     image: rabbitmq:management
 
+  identity:
+    image: quay.io/keycloak/keycloak:26.4.1
+
 volumes:
   postgres_ecommercedb:
   seq_data:  
