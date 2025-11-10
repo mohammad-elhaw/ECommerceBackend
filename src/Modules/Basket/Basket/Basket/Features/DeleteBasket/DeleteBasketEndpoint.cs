@@ -17,6 +17,7 @@ public class DeleteBasketEndpoint : ICarterModule
         .Produces<DeleteBasketResponse>(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Deletes a shopping basket.")
-        .WithDescription("Deletes the shopping basket for the specified user.");
+        .WithDescription("Deletes the shopping basket for the specified user.")
+        .RequireAuthorization();
     }
 }

@@ -15,6 +15,7 @@ public class GetBasketEndpoint : ICarterModule
         .WithName("GetBasket")
         .Produces<GetBasketResponse>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
-        .WithTags("Basket");
+        .WithTags("Basket")
+        .RequireAuthorization();
     }
 }
