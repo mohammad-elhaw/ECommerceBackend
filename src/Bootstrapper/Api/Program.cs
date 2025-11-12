@@ -9,9 +9,10 @@ builder.Host.UseSerilog((context, config) =>
 
 var catalogAssembly = typeof(CatalogModule).Assembly;
 var basketAssembly = typeof(BasketModule).Assembly;
+var orderAssembly = typeof(OrderModule).Assembly;
 
-builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly);
-builder.Services.AddMediatorAssemblies(catalogAssembly, basketAssembly);
+builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderAssembly);
+builder.Services.AddMediatorAssemblies(catalogAssembly, basketAssembly, orderAssembly);
 builder.Services.AddMassTransitWithAssemblies(
     builder.Configuration, catalogAssembly, basketAssembly);
 builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
@@ -40,6 +41,6 @@ app.UseAuthorization();
 
 await app.UseCatalogModule();
 await app.UseBasketModule();
-app.UseOrderModule();
+await app.UseOrderModule();
 
 await app.RunAsync();
