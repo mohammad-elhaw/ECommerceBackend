@@ -14,7 +14,7 @@ var orderAssembly = typeof(OrderModule).Assembly;
 builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderAssembly);
 builder.Services.AddMediatorAssemblies(catalogAssembly, basketAssembly, orderAssembly);
 builder.Services.AddMassTransitWithAssemblies(
-    builder.Configuration, catalogAssembly, basketAssembly);
+    builder.Configuration, catalogAssembly, basketAssembly, orderAssembly);
 builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
 

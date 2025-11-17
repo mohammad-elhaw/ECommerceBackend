@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Order.Data;
-using Order.Orders.Dtos;
 using Order.Orders.ValueObjects;
 using Shared.Contracts.CQRS;
 
